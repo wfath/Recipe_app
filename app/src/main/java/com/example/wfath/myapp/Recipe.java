@@ -3,16 +3,21 @@ package com.example.wfath.myapp;
 import java.util.UUID;
 import java.util.Date;
 
-public class Crime extends Object {
+public class Recipe extends Object {
     private UUID mId;
     private String mTitle;
     private Date mDate;
     private boolean mSolved;
 
-    public Crime(){
+    public Recipe(){
 
         mId = UUID.randomUUID();
         mDate = new Date();
+    }
+
+    @Override
+    public String toString(){
+        return mTitle;
     }
 
     public UUID getId(){

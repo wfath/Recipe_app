@@ -17,14 +17,14 @@
         android:layout_height="wrap_content"
         android:hint="@string/crime_title_hint" />
 
-    <!--Crime details Label-->
+    <!--Recipe details Label-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/crime_details_label"
         style="?android:listSeparatorTextViewStyle" />
 
-    <!--Crime date, shows up as abutton-->
+    <!--Recipe date, shows up as abutton-->
 
 
     <!--    horizontal linear layout-->
@@ -35,7 +35,7 @@
         android:layout_marginRight="16dp"
         android:orientation="horizontal">
 
-        <!--Crime date, shows up as abutton-->
+        <!--Recipe date, shows up as abutton-->
         <Button
             android:id="@+id/crime_date"
             android:layout_width="wrap_content"
