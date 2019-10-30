@@ -11,30 +11,43 @@
         android:text="@string/crime_title_label"
         style="?android:listSeparatorTextViewStyle"/>
 
-<!--    title hint-->
+    <!--    title hint-->
     <EditText android:id="@+id/crime_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/crime_title_hint" />
-<!--Crime details Label-->
+
+    <!--Crime details Label-->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/crime_details_label"
         style="?android:listSeparatorTextViewStyle" />
-<!--Crime date, shows up as abutton-->
-    <Button android:id="@+id/crime_date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp" />
 
-<!--    crime solved label-->
-    <CheckBox android:id="@+id/crime_solved"
+    <!--Crime date, shows up as abutton-->
+
+
+    <!--    horizontal linear layout-->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/crime_solved_label" />
+        android:orientation="horizontal">
+
+        <!--Crime date, shows up as abutton-->
+        <Button
+            android:id="@+id/crime_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <!--    crime solved label-->
+        <CheckBox
+            android:id="@+id/crime_solved"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/crime_solved_label" />
+
+    </LinearLayout>
 
 </LinearLayout>
