@@ -27,7 +27,7 @@ public class RecipeListFragment extends ListFragment {
     @Override
     public void onCreate(Bundle savedInstancesState) {
         super.onCreate(savedInstancesState);
-        getActivity().setTitle(R.string.crimes_title);
+        getActivity().setTitle(R.string.recipes_title);
         mRecipes = RecipeLab.get(getActivity()).getCrimes();
 
         RecipeAdapter adapter = new RecipeAdapter(mRecipes);
@@ -46,6 +46,7 @@ public class RecipeListFragment extends ListFragment {
     private class RecipeAdapter extends ArrayAdapter<Recipe>{
 
         public RecipeAdapter(ArrayList<Recipe> recipes){
+
             super(getActivity(), 0 , recipes);
         }
 
@@ -65,5 +66,11 @@ public class RecipeListFragment extends ListFragment {
 
             return convertView;
         }
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        ((RecipeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 }

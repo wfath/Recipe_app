@@ -41,16 +41,16 @@ public class RecipeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        UUID recipeId = (UUID)getActivity().getIntent().getSerializableExtra(EXTRA_RECIPE_ID);
+        UUID recipeId = (UUID)getArguments().getSerializable(EXTRA_RECIPE_ID);
 
         mRecipe = RecipeLab.get(getActivity()).getRecipe(recipeId);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
-        View v = inflater.inflate(R.layout.fragment_crime, parent, false);
+        View v = inflater.inflate(R.layout.fragment_recipe, parent, false);
 
-        mTitlefield = (EditText)v.findViewById(R.id.crime_title);
+        mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());
         mTitlefield.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(
@@ -70,11 +70,11 @@ public class RecipeFragment extends Fragment {
         });
 
 //        This is where the data gets written on the button
-        mDateButton = (Button)v.findViewById(R.id.crime_date);
+        mDateButton = (Button)v.findViewById(R.id.recipe_date);
         mDateButton.setText(mRecipe.getDate().toString());
         mDateButton.setEnabled(false);
 
-        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox = (CheckBox)v.findViewById(R.id.recipe_solved);
         mSolvedCheckBox.setChecked(mRecipe.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
@@ -83,5 +83,15 @@ public class RecipeFragment extends Fragment {
         });
 
         return v;
+    }
+
+    public static RecipeFragment newInstance(UUID recipeId){
+        Bundle args = new Bundle();
+        args.putSerializable(EXTRA_RECIPE_ID, recipeId);
+
+        RecipeFragment fragment = new RecipeFragment();
+        fragment.setArguments(args);
+
+        return fragment;
     }
 }

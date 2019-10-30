@@ -6,10 +6,14 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
+import java.util.UUID;
+
 public class RecipeActivity extends SingleFragmentActivity {
 
     @Override
     protected  Fragment createFragment(){
-        return new RecipeFragment();
+
+        UUID recipeId = (UUID)getIntent().getSerializableExtra(RecipeFragment.EXTRA_RECIPE_ID);
+        return RecipeFragment.newInstance(recipeId);
     }
 }

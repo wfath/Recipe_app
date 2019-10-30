@@ -30,6 +30,6 @@
         android:paddingRight="4dp"
         android:paddingLeft="4dp"
         android:paddingTop="4dp"
-        android:text="Date Added"/>
+        android:text="Recipe date"/>
 
 </RelativeLayout>
