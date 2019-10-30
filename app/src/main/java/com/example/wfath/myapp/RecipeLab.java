@@ -33,7 +33,7 @@ public class RecipeLab {
         return mRecipes;
     }
 
-    public Recipe getCrime(UUID id) {
+    public Recipe getRecipe(UUID id) {
         for (Recipe c : mRecipes) {
             if (c.getId().equals(id)){
                 return c;

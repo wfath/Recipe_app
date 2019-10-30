@@ -14,6 +14,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import android.content.Intent;
 
 //need both of these for some reason to get the button to work
 //import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -36,7 +37,10 @@ public class RecipeListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Recipe r = ((RecipeAdapter)getListAdapter()).getItem(position);
-        Log.d(TAG, r.getTitle() + " was slapped");
+
+        Intent i = new Intent(getActivity(), RecipeActivity.class);
+        i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, r.getId());
+        startActivity(i);
     }
 
     private class RecipeAdapter extends ArrayAdapter<Recipe>{

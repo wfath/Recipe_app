@@ -22,11 +22,15 @@ import android.text.Editable;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 
+import java.util.UUID;
+
 
 //must add a RecipeFragment to crimeactivity or all of this is in vain
 //give the fragments a place to be heard!!
 //#fragmentmovement 2k19
 public class RecipeFragment extends Fragment {
+    public static final String EXTRA_RECIPE_ID = "com.example.wfath.myapp.recipe_id";
+
     private Recipe mRecipe;
     private EditText mTitlefield;
     private Button mDateButton;
@@ -37,15 +41,17 @@ public class RecipeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        mRecipe = new Recipe();
+        UUID recipeId = (UUID)getActivity().getIntent().getSerializableExtra(EXTRA_RECIPE_ID);
+
+        mRecipe = RecipeLab.get(getActivity()).getRecipe(recipeId);
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent,
-                            Bundle savedInstanceState){
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_crime, parent, false);
 
         mTitlefield = (EditText)v.findViewById(R.id.crime_title);
+        mTitlefield.setText(mRecipe.getTitle());
         mTitlefield.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(
                     CharSequence c, int start, int before, int count) {
@@ -69,6 +75,7 @@ public class RecipeFragment extends Fragment {
         mDateButton.setEnabled(false);
 
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.crime_solved);
+        mSolvedCheckBox.setChecked(mRecipe.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
                 mRecipe.setSolved(isChecked);
