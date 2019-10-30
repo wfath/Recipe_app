@@ -29,7 +29,7 @@ public class RecipeLab {
         return sRecipeLab;
     }
 
-    public ArrayList<Recipe> getCrimes() {
+    public ArrayList<Recipe> getRecipes() {
         return mRecipes;
     }
 

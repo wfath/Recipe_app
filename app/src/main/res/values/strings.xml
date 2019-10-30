@@ -2,8 +2,8 @@
     <string name="app_name">Recipe App</string>
     <string name="title_activity_crime"></string>
     <string name="recipe_title_hint"></string>
-    <string name="recipe_title_label">Title</string>
+    <string name="recipe_title_label">Recipe Name</string>
     <string name="recipe_details_label">Details</string>
-    <string name="recipe_solved_label">Solved?</string>
+    <string name="recipe_favorited_label">Favorite</string>
     <string name="recipes_title">Recipes</string>
 </resources>

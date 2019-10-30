@@ -28,7 +28,7 @@ public class RecipeListFragment extends ListFragment {
     public void onCreate(Bundle savedInstancesState) {
         super.onCreate(savedInstancesState);
         getActivity().setTitle(R.string.recipes_title);
-        mRecipes = RecipeLab.get(getActivity()).getCrimes();
+        mRecipes = RecipeLab.get(getActivity()).getRecipes();
 
         RecipeAdapter adapter = new RecipeAdapter(mRecipes);
         setListAdapter(adapter);
@@ -60,7 +60,7 @@ public class RecipeListFragment extends ListFragment {
             TextView titleTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_titleTextView);
             titleTextView.setText(r.getTitle());
             TextView dateTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_dateTextView);
-            titleTextView.setText(r.getDate().toString());
+            dateTextView.setText(r.getDate().toString());
             CheckBox solvedCheckBox = (CheckBox) convertView.findViewById(R.id.recipe_list_item_solvedCheckBox);
             solvedCheckBox.setChecked(r.isSolved());
 
