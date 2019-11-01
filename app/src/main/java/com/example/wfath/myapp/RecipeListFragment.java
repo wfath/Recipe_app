@@ -18,7 +18,7 @@ import android.content.Intent;
 
 //need both of these for some reason to get the button to work
 //import android.widget.RadioGroup.OnCheckedChangeListener;
-//commit chapter 11
+//commit chapter 11 start 202
 
 public class RecipeListFragment extends ListFragment {
     private static final String TAG = "RecipeListFragment";
@@ -38,7 +38,8 @@ public class RecipeListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         Recipe r = ((RecipeAdapter)getListAdapter()).getItem(position);
 
-        Intent i = new Intent(getActivity(), RecipeActivity.class);
+        //start up the pager
+        Intent i = new Intent(getActivity(), RecipePagerActivity.class);
         i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, r.getId());
         startActivity(i);
     }

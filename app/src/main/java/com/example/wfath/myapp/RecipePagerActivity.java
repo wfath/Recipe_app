@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentActivity;
 import android.os.Bundle;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class RecipePagerActivity extends FragmentActivity {
     private ViewPager mViewPager;
@@ -42,6 +43,39 @@ public class RecipePagerActivity extends FragmentActivity {
                 return mRecipes.size();
             }
         });
+
+        //setonpagelistener is deprecated
+        //addonpage... can add more than one listenere at once
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Recipe recipe = mRecipes.get(position);
+                if(recipe.getTitle() != null){
+                    setTitle(recipe.getTitle());
+                }
+
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        UUID recipeId = (UUID)getIntent().getSerializableExtra(RecipeFragment.EXTRA_RECIPE_ID);
+        for(int i = 0; i < mRecipes.size(); i++){
+            if(mRecipes.get(i).getId().equals(recipeId)){
+                mViewPager.setCurrentItem(i);
+                break;
+            }
+        }
+
     }
 
 }
