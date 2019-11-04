@@ -1,6 +1,7 @@
 package com.example.wfath.myapp;
 //import androidx.lifecycle.Fr
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 
 import android.os.Bundle;
@@ -30,6 +31,7 @@ import java.util.UUID;
 //#fragmentmovement 2k19
 public class RecipeFragment extends Fragment {
     public static final String EXTRA_RECIPE_ID = "com.example.wfath.myapp.recipe_id";
+    private static final String DIALOG_DATE = "date";
 
     private Recipe mRecipe;
     private EditText mTitlefield;
@@ -72,7 +74,13 @@ public class RecipeFragment extends Fragment {
 //        This is where the data gets written on the button
         mDateButton = (Button)v.findViewById(R.id.recipe_date);
         mDateButton.setText(mRecipe.getDate().toString());
-        mDateButton.setEnabled(false);
+        mDateButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                FragmentManager fm = getActivity().getSupportFragmentManager();
+                DatePickerFragment dialog = new DatePickerFragment();
+                dialog.show(fm, DIALOG_DATE);
+            }
+        });
 
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.recipe_solved);
         mSolvedCheckBox.setChecked(mRecipe.isSolved());
