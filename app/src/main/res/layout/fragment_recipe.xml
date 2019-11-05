@@ -4,25 +4,27 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-<!--    //title label-->
+
+    <!--    //title label-->
     <TextView
+        style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_title_label"
-        style="?android:listSeparatorTextViewStyle"/>
+        android:text="@string/recipe_title_label" />
 
     <!--    title hint-->
-    <EditText android:id="@+id/recipe_title"
+    <EditText
+        android:id="@+id/recipe_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/recipe_title_hint" />
 
     <!--Recipe details Label-->
     <TextView
+        style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_details_label"
-        style="?android:listSeparatorTextViewStyle" />
+        android:text="@string/recipe_details_label" />
 
     <!--Recipe date, shows up as abutton-->
 

@@ -3,6 +3,7 @@ import androidx.fragment.app.ListFragment;
 
 
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
@@ -11,6 +12,8 @@ import android.widget.ListView;
 import android.view.View;
 import android.app.Application;
 import android.content.ContextWrapper;
+
+import android.view.Menu;
 
 import android.util.Log;
 import android.widget.TextView;
@@ -26,12 +29,14 @@ import android.content.Intent;
 public class RecipeListFragment extends ListFragment {
     private static final String TAG = "RecipeListFragment";
     private ArrayList<Recipe> mRecipes;
-    ListView listView;
+    private ListView mlistView;
 
 
     @Override
     public void onCreate(Bundle savedInstancesState) {
         super.onCreate(savedInstancesState);
+        setHasOptionsMenu(true);
+
         getActivity().setTitle(R.string.recipes_title);
         mRecipes = RecipeLab.get(getActivity()).getRecipes();
 
@@ -85,5 +90,12 @@ public class RecipeListFragment extends ListFragment {
     public void onResume(){
         super.onResume();
         ((RecipeAdapter)getListAdapter()).notifyDataSetChanged();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.fragment_recipe_list, menu);
+
     }
 }

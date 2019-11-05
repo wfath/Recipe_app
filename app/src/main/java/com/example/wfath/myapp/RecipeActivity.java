@@ -8,6 +8,8 @@ import android.os.Bundle;
 
 import java.util.UUID;
 
+
+//singlFragmentActivity
 public class RecipeActivity extends SingleFragmentActivity {
 
     @Override
