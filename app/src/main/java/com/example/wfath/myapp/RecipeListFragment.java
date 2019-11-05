@@ -9,9 +9,12 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.view.View;
+import android.app.Application;
+import android.content.ContextWrapper;
 
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.ListView;
 
 import java.util.ArrayList;
 import android.content.Intent;
@@ -23,6 +26,8 @@ import android.content.Intent;
 public class RecipeListFragment extends ListFragment {
     private static final String TAG = "RecipeListFragment";
     private ArrayList<Recipe> mRecipes;
+    ListView listView;
+
 
     @Override
     public void onCreate(Bundle savedInstancesState) {
@@ -32,6 +37,13 @@ public class RecipeListFragment extends ListFragment {
 
         RecipeAdapter adapter = new RecipeAdapter(mRecipes);
         setListAdapter(adapter);
+
+//        TextView tv = new TextView(getActivity().getApplicationContext());
+//        tv.setText("Select State");
+//
+//        listView = getListView();
+//        listView.addHeaderView(tv);
+
     }
 
     @Override
