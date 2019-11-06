@@ -1,5 +1,6 @@
 package com.example.wfath.myapp;
 //import androidx.lifecycle.Fr
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
@@ -31,7 +32,9 @@ import androidx.fragment.app.FragmentActivity;
 
 //i imported everything...
 
-public abstract class SingleFragmentActivity extends FragmentActivity {
+
+//using the new extends
+public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
 
     @Override
