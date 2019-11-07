@@ -92,11 +92,11 @@ public class RecipeListFragment extends ListFragment {
         ((RecipeAdapter)getListAdapter()).notifyDataSetChanged();
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-//        super.onCreateOptionsMenu(menu, inflater);
-////        menu.clear();
-//        inflater.inflate(R.menu.fragment_recipe_list, menu);
-//
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+        super.onCreateOptionsMenu(menu, inflater);
+//        menu.clear();
+        inflater.inflate(R.menu.fragment_recipe_list, menu);
+
+    }
 }
