@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -34,6 +35,8 @@ import androidx.fragment.app.FragmentActivity;
 
 
 //using the new extends
+//AppCompatActivity
+//FragmentActivity
 public abstract class SingleFragmentActivity extends AppCompatActivity {
     protected abstract Fragment createFragment();
 
@@ -49,5 +52,19 @@ public abstract class SingleFragmentActivity extends AppCompatActivity {
                     .add(R.id.fragmentContainer, fragment)
                     .commit();
         }
+            //trying to get action bar
+//        getSupportActionBar().setTitle("@String/app_name");
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        int id = item.getItemId();
+//        if( id == android.R.id.home){
+//            finish();
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+
+
 }

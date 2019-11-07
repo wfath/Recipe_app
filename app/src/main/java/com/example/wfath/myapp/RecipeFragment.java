@@ -51,6 +51,7 @@ public class RecipeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_recipe, parent, false);
+//        setHasOptionsMenu(true);
 
         mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());

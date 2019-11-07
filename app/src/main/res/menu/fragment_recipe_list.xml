@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_tiem_new_recipe"
+<Menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item android:id="@+id/menu_item_new_recipe"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/new_recipe"
-        android:showAsAction="ifRoom|withText"/>
+        app:showAsAction="ifRoom|withText"/>
 </Menu>
