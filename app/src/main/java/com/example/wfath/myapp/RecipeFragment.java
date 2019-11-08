@@ -1,9 +1,12 @@
 package com.example.wfath.myapp;
 //import androidx.lifecycle.Fr
+import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 
 
@@ -20,6 +23,7 @@ import android.widget.Button;
 import android.text.TextWatcher;
 import android.text.Editable;
 
+import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.widget.EditText;
 
@@ -46,12 +50,21 @@ public class RecipeFragment extends Fragment {
         UUID recipeId = (UUID)getArguments().getSerializable(EXTRA_RECIPE_ID);
 
         mRecipe = RecipeLab.get(getActivity()).getRecipe(recipeId);
+
+        setHasOptionsMenu(true);
     }
 
+    @TargetApi(11)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_recipe, parent, false);
 //        setHasOptionsMenu(true);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            if (NavUtils.getParentActivityName(getActivity()) != null) {
+                getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
+            }
+        }
 
         mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());
@@ -102,5 +115,19 @@ public class RecipeFragment extends Fragment {
         fragment.setArguments(args);
 
         return fragment;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()){
+            case android.R.id.home:
+                if(NavUtils.getParentActivityName(getActivity()) != null){
+                    NavUtils.navigateUpFromSameTask(getActivity());
+                }
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

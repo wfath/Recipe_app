@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <item android:id="@+id/menu_item_new_recipe"
-        android:icon="@android:drawable/ic_menu_add"
+        android:icon="@drawable/ic_add_recipe"
         android:title="@string/new_recipe"
         app:showAsAction="ifRoom|withText"/>
+    <item android:id="@+id/menu_item_show_subtitle"
+        android:title="@string/show_subtitle"
+        app:showAsAction="ifRoom"/>
 </menu>

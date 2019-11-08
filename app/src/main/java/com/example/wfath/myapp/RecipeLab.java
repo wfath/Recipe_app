@@ -14,12 +14,12 @@ public class RecipeLab {
         mRecipes = new ArrayList<Recipe>();
 
         //puts 100 crimes on the screen
-        for (int i = 0; i < 100; i++){
-            Recipe c = new Recipe();
-            c.setTitle("Recipe #" + i);
-            c.setSolved(i % 2 == 0);
-            mRecipes.add(c);
-        }
+//        for (int i = 0; i < 100; i++){
+//            Recipe c = new Recipe();
+//            c.setTitle("Recipe #" + i);
+//            c.setSolved(i % 2 == 0);
+//            mRecipes.add(c);
+//        }
     }
 
     public static RecipeLab get(Context c) {
@@ -29,7 +29,13 @@ public class RecipeLab {
         return sRecipeLab;
     }
 
+    public void addRecipe(Recipe r) {
+        mRecipes.add(r);
+    }
+
     public ArrayList<Recipe> getRecipes() {
+
+
         return mRecipes;
     }
 

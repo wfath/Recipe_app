@@ -2,8 +2,11 @@ package com.example.wfath.myapp;
 import androidx.fragment.app.ListFragment;
 
 
+import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
@@ -14,6 +17,10 @@ import android.app.Application;
 import android.content.ContextWrapper;
 
 import android.view.Menu;
+
+import android.annotation.TargetApi;
+
+import android.app.ActionBar;
 
 import android.util.Log;
 import android.widget.TextView;
@@ -30,6 +37,7 @@ public class RecipeListFragment extends ListFragment {
     private static final String TAG = "RecipeListFragment";
     private ArrayList<Recipe> mRecipes;
     private ListView mlistView;
+    private boolean mSubtitleVisible;
 
 
     @Override
@@ -43,12 +51,59 @@ public class RecipeListFragment extends ListFragment {
         RecipeAdapter adapter = new RecipeAdapter(mRecipes);
         setListAdapter(adapter);
 
+
+        setRetainInstance(true);
+        mSubtitleVisible = false;
+        //this is gone be important for trying to change the icon of the app
+        //I would like icon to the left of the app name but it's not necessary
+        //getSupportActionBar();
+
+
 //        TextView tv = new TextView(getActivity().getApplicationContext());
 //        tv.setText("Select State");
 //
 //        listView = getListView();
 //        listView.addHeaderView(tv);
 
+    }
+
+    @TargetApi(11)
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
+        View v = super.onCreateView(inflater, parent, savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            if(mSubtitleVisible) {
+                getActivity().getActionBar().setSubtitle(R.string.subtitle);
+            }
+        }
+        return v;
+    }
+
+    @TargetApi(11)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_item_new_recipe:
+                Recipe recipe = new Recipe();
+                RecipeLab.get(getActivity()).addRecipe(recipe);
+                Intent i = new Intent(getActivity(), RecipePagerActivity.class);
+                i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, recipe.getId());
+                startActivityForResult(i, 0);
+                return true;
+            case R.id.menu_item_show_subtitle:
+                if (getActivity().getActionBar().getSubtitle() == null) {
+                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
+                    mSubtitleVisible = true;
+                    item.setTitle(R.string.hide_subtitle);
+                } else {
+                    getActivity().getActionBar().setSubtitle(null);
+                    mSubtitleVisible = false;
+                    item.setTitle(R.string.show_subtitle);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -97,6 +152,11 @@ public class RecipeListFragment extends ListFragment {
         super.onCreateOptionsMenu(menu, inflater);
 //        menu.clear();
         inflater.inflate(R.menu.fragment_recipe_list, menu);
+
+        MenuItem showSubtitle = menu.findItem(R.id.menu_item_show_subtitle);
+        if(mSubtitleVisible && showSubtitle != null) {
+            showSubtitle.setTitle(R.string.hide_subtitle);
+        }
 
     }
 }
