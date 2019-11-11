@@ -1,5 +1,6 @@
 package com.example.wfath.myapp;
 //import androidx.lifecycle.Fr
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -22,6 +23,8 @@ import android.widget.Button;
 
 import android.text.TextWatcher;
 import android.text.Editable;
+
+//import android.support.v4.app.Action
 
 import android.view.MenuItem;
 import android.view.LayoutInflater;
@@ -51,20 +54,26 @@ public class RecipeFragment extends Fragment {
 
         mRecipe = RecipeLab.get(getActivity()).getRecipe(recipeId);
 
-        setHasOptionsMenu(true);
+        //part fo the Up button comment out
+//        setHasOptionsMenu(true);
     }
 
     @TargetApi(11)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
         View v = inflater.inflate(R.layout.fragment_recipe, parent, false);
-//        setHasOptionsMenu(true);
+       //maybe uncomment this
+        // setHasOptionsMenu(true);
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if (NavUtils.getParentActivityName(getActivity()) != null) {
-                getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-            }
-        }
+//        so this is for the up button to go back one view ancestrally
+        //but this is a recipe app so I don't know that I really need that so we probably just comment out bc headaches
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//            if (NavUtils.getParentActivityName(getActivity()) != null) {
+//                //https://stackoverflow.com/questions/18320713/getsupportactionbar-from-inside-of-fragment-actionbarcompat
+//                ((AppCompatActivity)getActivity()).getActionBar().setDisplayHomeAsUpEnabled(true);
+//            }
+//        }
 
         mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());
@@ -117,17 +126,19 @@ public class RecipeFragment extends Fragment {
         return fragment;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item){
-        switch(item.getItemId()){
-            case android.R.id.home:
-                if(NavUtils.getParentActivityName(getActivity()) != null){
-                    NavUtils.navigateUpFromSameTask(getActivity());
-                }
-                return true;
 
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
+    //plz stop breaking my program
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item){
+//        switch(item.getItemId()){
+//            case android.R.id.home:
+//                if(NavUtils.getParentActivityName(getActivity()) != null){
+//                    NavUtils.navigateUpFromSameTask(getActivity());
+//                }
+//                return true;
+//
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
 }

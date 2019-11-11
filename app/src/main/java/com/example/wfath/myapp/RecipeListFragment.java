@@ -90,17 +90,17 @@ public class RecipeListFragment extends ListFragment {
                 i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, recipe.getId());
                 startActivityForResult(i, 0);
                 return true;
-            case R.id.menu_item_show_subtitle:
-                if (getActivity().getActionBar().getSubtitle() == null) {
-                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
-                    mSubtitleVisible = true;
-                    item.setTitle(R.string.hide_subtitle);
-                } else {
-                    getActivity().getActionBar().setSubtitle(null);
-                    mSubtitleVisible = false;
-                    item.setTitle(R.string.show_subtitle);
-                }
-                return true;
+//            case R.id.menu_item_show_subtitle:
+//                if (getActivity().getActionBar().getSubtitle() == null) {
+//                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
+//                    mSubtitleVisible = true;
+//                    item.setTitle(R.string.hide_subtitle);
+//                } else {
+//                    getActivity().getActionBar().setSubtitle(null);
+//                    mSubtitleVisible = false;
+//                    item.setTitle(R.string.show_subtitle);
+//                }
+//                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -153,10 +153,11 @@ public class RecipeListFragment extends ListFragment {
 //        menu.clear();
         inflater.inflate(R.menu.fragment_recipe_list, menu);
 
-        MenuItem showSubtitle = menu.findItem(R.id.menu_item_show_subtitle);
-        if(mSubtitleVisible && showSubtitle != null) {
-            showSubtitle.setTitle(R.string.hide_subtitle);
-        }
+        //taking out this dumb subtitle too
+//        MenuItem showSubtitle = menu.findItem(R.id.menu_item_show_subtitle);
+//        if(mSubtitleVisible && showSubtitle != null) {
+//            showSubtitle.setTitle(R.string.hide_subtitle);
+//        }
 
     }
 }
