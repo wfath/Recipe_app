@@ -126,6 +126,11 @@ public class RecipeFragment extends Fragment {
         return fragment;
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        RecipeLab.get(getActivity()).saveRecipes();
+    }
 
     //plz stop breaking my program
 //    @Override
