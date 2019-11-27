@@ -12,4 +12,5 @@
     <string name="hide_subtitle">Hide Subtitle</string>
     <string name="subtitle">We Love FOOD</string>
     <string name="delete_crime">Delete</string>
+    <string name="recipe_information">Recipe Info</string>
 </resources>

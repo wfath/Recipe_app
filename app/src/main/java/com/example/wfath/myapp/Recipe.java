@@ -15,6 +15,7 @@ public class Recipe extends Object {
 
     private UUID mId;
     private String mTitle;
+    private String mInformation;
     private Date mDate;
     private boolean mSolved;
 

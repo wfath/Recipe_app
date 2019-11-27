@@ -41,6 +41,7 @@ public class RecipeFragment extends Fragment {
     private static final String DIALOG_DATE = "date";
 
     private Recipe mRecipe;
+    private EditText mRecipeInfo;
     private EditText mTitlefield;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
@@ -75,6 +76,29 @@ public class RecipeFragment extends Fragment {
 //            }
 //        }
 
+        mRecipeInfo = (EditText)v.findViewById(R.id.recipe_information);
+        //TODO::NEED to go throuhg and implemnt all of the stuff for the recipe info
+        //TODO::save the information to the JSON, add all of the getters and setters
+        //TODO:: go through and do everything like that, might be a bit confusing but we will get this
+        //TODO:: young money fresh money lets get it!!
+        mRecipeInfo.setText(mRecipe.getInfo());
+        mRecipeInfo.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(
+                    CharSequence c, int start, int before, int count) {
+                mRecipe.setInfo(c.toString());
+            }
+
+
+            public void beforeTextChanged(
+                    CharSequence c, int start, int count, int after) {
+                //intent left blacnk
+            }
+
+            public void afterTextChanged(Editable c) {
+                //this one too
+            }
+        });
+
         mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());
         mTitlefield.addTextChangedListener(new TextWatcher() {
@@ -93,7 +117,6 @@ public class RecipeFragment extends Fragment {
                 //this one too
             }
         });
-
 //        This is where the data gets written on the button
         mDateButton = (Button)v.findViewById(R.id.recipe_date);
         mDateButton.setText(mRecipe.getDate().toString());

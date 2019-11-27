@@ -26,6 +26,12 @@
         android:layout_height="wrap_content"
         android:text="@string/recipe_details_label" />
 
+
+    <EditText
+        android:id="@+id/recipe_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/recipe_title_hint" />
     <!--Recipe date, shows up as abutton-->
 
 
