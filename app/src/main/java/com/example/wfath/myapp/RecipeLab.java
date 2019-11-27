@@ -1,18 +1,30 @@
 package com.example.wfath.myapp;
 import android.content.Context;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+import android.util.Log;
 
 public class RecipeLab {
-    private List<Recipe> mRecipes;
+    private static final String TAG = "RecipeLab";
+    private static final String FILENAME = "crimes.json";
+
+    private ArrayList<Recipe> mRecipes;
+    private RecipeJSONSerializer mSerializer;
 
     private static RecipeLab sRecipeLab;
     private Context mAppContext;
 
     private RecipeLab(Context appContext) {
         mAppContext = appContext;
-        mRecipes = new ArrayList<Recipe>();
+//        mRecipes = new ArrayList<Recipe>();
+        mSerializer = new RecipeJSONSerializer(mAppContext, FILENAME);
+
+        try{
+            mRecipes = mSerializer.loadRecipes();
+        } catch (Exception e){
+            mRecipes = new ArrayList<Recipe>();
+            Log.e(TAG, "Error loading recipes: ", e);
+        }
 
         //puts 100 crimes on the screen
 //        for (int i = 0; i < 100; i++){
@@ -34,7 +46,18 @@ public class RecipeLab {
         mRecipes.add(r);
     }
 
-    public List<Recipe> getRecipes() {
+    public boolean saveRecipes(){
+        try{
+            mSerializer.saveRecipes(mRecipes);
+            Log.d(TAG, "crimes saved to file");
+            return true;
+        } catch (Exception e){
+            Log.e(TAG, "Error saving crimes: ", e);
+            return false;
+        }
+    }
+
+    public ArrayList<Recipe> getRecipes() {
 
 
         return mRecipes;
