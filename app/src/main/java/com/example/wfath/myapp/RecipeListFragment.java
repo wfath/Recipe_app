@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.view.View;
 import android.app.Application;
@@ -38,7 +39,8 @@ public class RecipeListFragment extends ListFragment {
     private ArrayList<Recipe> mRecipes;
     private ListView mlistView;
     private boolean mSubtitleVisible;
-
+    private EditText mRecipeInfo;
+    private EditText mTitlefield;
 
     @Override
     public void onCreate(Bundle savedInstancesState) {
@@ -89,6 +91,9 @@ public class RecipeListFragment extends ListFragment {
                 Intent i = new Intent(getActivity(), RecipePagerActivity.class);
                 i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, recipe.getId());
                 startActivityForResult(i, 0);
+
+//                RecipeFragment.newInstance(recipe.getId()).setTitleAndInfoFocusable();
+
                 return true;
 //            case R.id.menu_item_show_subtitle:
 //                if (getActivity().getActionBar().getSubtitle() == null) {
@@ -109,10 +114,17 @@ public class RecipeListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         Recipe r = ((RecipeAdapter)getListAdapter()).getItem(position);
-
+//        mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
+//        mTitlefield.setFocusable(false);
+//
+//        mRecipeInfo = (EditText)v.findViewById(R.id.recipe_information);
+//        mRecipeInfo.setFocusable(false);
         //start up the pager
         Intent i = new Intent(getActivity(), RecipePagerActivity.class);
         i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, r.getId());
+
+//        RecipeFragment.newInstance(r.getId()).setTitleAndInfoNOTFocusable();
+
         startActivity(i);
     }
 
