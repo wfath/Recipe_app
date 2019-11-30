@@ -39,6 +39,8 @@ import java.util.UUID;
 public class RecipeFragment extends Fragment {
     public static final String EXTRA_RECIPE_ID = "com.example.wfath.myapp.recipe_id";
     private static final String DIALOG_DATE = "date";
+    private boolean titleHasBeenSet;
+    private boolean infoHasBeenSet;
 
     private Recipe mRecipe;
     private EditText mRecipeInfo;
@@ -48,6 +50,30 @@ public class RecipeFragment extends Fragment {
 
 //    Fragment.onCreate
 
+    public String getRecipeTitle(){
+        try{
+        return mRecipe.getTitle();
+        } catch(NullPointerException e) {
+            return null;
+        }
+    }
+
+    public String getRecipeInfo(){
+        try {
+            return mRecipe.getInfo();
+        } catch (NullPointerException e){
+            return null;
+        }
+    }
+
+    public void setTitleAndInfoFocusable(){
+        titleHasBeenSet = false;
+        infoHasBeenSet = false;
+    }
+    public void setTitleAndInfoNOTFocusable(){
+        titleHasBeenSet = true;
+        infoHasBeenSet = true;
+    }
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -82,10 +108,22 @@ public class RecipeFragment extends Fragment {
         //TODO:: go through and do everything like that, might be a bit confusing but we will get this
         //TODO:: young money fresh money lets get it!!
         mRecipeInfo.setText(mRecipe.getInfo());
+        System.out.println("this is the current info: " + mRecipeInfo.getText());
+
+        //I did it this is how you make sure it's non editable after your first instance
+        if(mRecipe.getInfo() != null){
+            mRecipeInfo.setFocusable(false);
+        }
+
         mRecipeInfo.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(
                     CharSequence c, int start, int before, int count) {
+//                if(mRecipe.getInfo() == null){
                 mRecipe.setInfo(c.toString());
+//                else{
+//                    mRecipeInfo.setFocusable(false);
+//                }
+//                mRecipeInfo.setFocusable(false);
             }
 
 
@@ -96,15 +134,28 @@ public class RecipeFragment extends Fragment {
 
             public void afterTextChanged(Editable c) {
                 //this one too
+//                mRecipeInfo.setFocusable(false);
+//                infoHasBeenSet = true;
             }
         });
 
         mTitlefield = (EditText)v.findViewById(R.id.recipe_title);
         mTitlefield.setText(mRecipe.getTitle());
+
+
+        if(mRecipe.getTitle() != null){
+            mTitlefield.setFocusable(false);
+        }
+
         mTitlefield.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(
                     CharSequence c, int start, int before, int count) {
+//                if(mRecipe.getTitle() == null){
                 mRecipe.setTitle(c.toString());
+//                } else {
+//                    mTitlefield.setFocusable(false);
+//                }
+//                mTitlefield.setFocusable(false);
             }
 
 
@@ -115,6 +166,8 @@ public class RecipeFragment extends Fragment {
 
             public void afterTextChanged(Editable c) {
                 //this one too
+//                mTitlefield.setFocusable(false);
+//                titleHasBeenSet = true;
             }
         });
 //        This is where the data gets written on the button
@@ -145,6 +198,15 @@ public class RecipeFragment extends Fragment {
 
         RecipeFragment fragment = new RecipeFragment();
         fragment.setArguments(args);
+//        System.out.println(fragment.getRecipeInfo());
+//        if(fragment.getRecipeInfo() == null && fragment.getRecipeTitle() == null){
+//            fragment.setTitleAndInfoFocusable();
+//            System.out.println("set focusable");
+//        }else{
+//            fragment.setTitleAndInfoNOTFocusable();
+//            System.out.println("set non focusable");
+//        }
+//        fragment.setTitleAndInfoFocusable();
 
         return fragment;
     }
