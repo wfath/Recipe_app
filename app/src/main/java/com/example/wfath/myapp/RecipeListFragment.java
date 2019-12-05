@@ -27,137 +27,156 @@ import android.widget.TextView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 //need both of these for some reason to get the button to work
 //import android.widget.RadioGroup.OnCheckedChangeListener;
 //commit chapter 11 start 202
 
-public class RecipeListFragment extends ListFragment {
-    private static final String TAG = "RecipeListFragment";
-    private ArrayList<Recipe> mRecipes;
-    private ListView mlistView;
-    private boolean mSubtitleVisible;
+public class RecipeListFragment extends Fragment {
+//    private static final String TAG = "RecipeListFragment";
+//    private ArrayList<Recipe> mRecipes;
+//    private ListView mlistView;
+//    private boolean mSubtitleVisible;
 
+    private RecyclerView mRecipeRecyclerView;
+//we are around slide 630
 
     @Override
-    public void onCreate(Bundle savedInstancesState) {
-        super.onCreate(savedInstancesState);
-        setHasOptionsMenu(true);
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view =
+                inflater.inflate(R.layout.fragment_recipe_list,
+                        container, false);
+        mRecipeRecyclerView = (RecyclerView) view
+                .findViewById(R.id.recipe_recycler_view);
+        mRecipeRecyclerView.setLayoutManager(new
+                LinearLayoutManager(getActivity()));
+        return view;
+    }}
 
-        getActivity().setTitle(R.string.recipes_title);
-        mRecipes = RecipeLab.get(getActivity()).getRecipes();
-
-        RecipeAdapter adapter = new RecipeAdapter(mRecipes);
-        setListAdapter(adapter);
-
-
-        setRetainInstance(true);
-        mSubtitleVisible = false;
-        //this is gone be important for trying to change the icon of the app
-        //I would like icon to the left of the app name but it's not necessary
-        //getSupportActionBar();
-
-
-//        TextView tv = new TextView(getActivity().getApplicationContext());
-//        tv.setText("Select State");
+//    @Override
+//    public void onCreate(Bundle savedInstancesState) {
+//        super.onCreate(savedInstancesState);
+//        setHasOptionsMenu(true);
 //
-//        listView = getListView();
-//        listView.addHeaderView(tv);
-
-    }
-
-    @TargetApi(11)
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
-        View v = super.onCreateView(inflater, parent, savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            if(mSubtitleVisible) {
-                getActivity().getActionBar().setSubtitle(R.string.subtitle);
-            }
-        }
-        return v;
-    }
-
-    @TargetApi(11)
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_item_new_recipe:
-                Recipe recipe = new Recipe();
-                RecipeLab.get(getActivity()).addRecipe(recipe);
-                Intent i = new Intent(getActivity(), RecipePagerActivity.class);
-                i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, recipe.getId());
-                startActivityForResult(i, 0);
-                return true;
-//            case R.id.menu_item_show_subtitle:
-//                if (getActivity().getActionBar().getSubtitle() == null) {
-//                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
-//                    mSubtitleVisible = true;
-//                    item.setTitle(R.string.hide_subtitle);
-//                } else {
-//                    getActivity().getActionBar().setSubtitle(null);
-//                    mSubtitleVisible = false;
-//                    item.setTitle(R.string.show_subtitle);
-//                }
-//                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public void onListItemClick(ListView l, View v, int position, long id) {
-        Recipe r = ((RecipeAdapter)getListAdapter()).getItem(position);
-
-        //start up the pager
-        Intent i = new Intent(getActivity(), RecipePagerActivity.class);
-        i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, r.getId());
-        startActivity(i);
-    }
-
-    private class RecipeAdapter extends ArrayAdapter<Recipe>{
-
-        public RecipeAdapter(ArrayList<Recipe> recipes){
-
-            super(getActivity(), 0 , recipes);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            if(convertView == null){
-                convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_recipe, null);
-            }
-            Recipe r = getItem(position);
-
-            TextView titleTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_titleTextView);
-            titleTextView.setText(r.getTitle());
-            TextView dateTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_dateTextView);
-            dateTextView.setText(r.getDate().toString());
-            CheckBox solvedCheckBox = (CheckBox) convertView.findViewById(R.id.recipe_list_item_solvedCheckBox);
-            solvedCheckBox.setChecked(r.isSolved());
-
-            return convertView;
-        }
-    }
-
-    @Override
-    public void onResume(){
-        super.onResume();
-        ((RecipeAdapter)getListAdapter()).notifyDataSetChanged();
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
-        super.onCreateOptionsMenu(menu, inflater);
-//        menu.clear();
-        inflater.inflate(R.menu.fragment_recipe_list, menu);
-
-        //taking out this dumb subtitle too
-//        MenuItem showSubtitle = menu.findItem(R.id.menu_item_show_subtitle);
-//        if(mSubtitleVisible && showSubtitle != null) {
-//            showSubtitle.setTitle(R.string.hide_subtitle);
+//        getActivity().setTitle(R.string.recipes_title);
+//        mRecipes = RecipeLab.get(getActivity()).getRecipes();
+//
+//        RecipeAdapter adapter = new RecipeAdapter(mRecipes);
+//        setListAdapter(adapter);
+//
+//
+//        setRetainInstance(true);
+//        mSubtitleVisible = false;
+//        //this is gone be important for trying to change the icon of the app
+//        //I would like icon to the left of the app name but it's not necessary
+//        //getSupportActionBar();
+//
+//
+////        TextView tv = new TextView(getActivity().getApplicationContext());
+////        tv.setText("Select State");
+////
+////        listView = getListView();
+////        listView.addHeaderView(tv);
+//
+//    }
+//
+//    @TargetApi(11)
+//    @Override
+//    public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState){
+//        View v = super.onCreateView(inflater, parent, savedInstanceState);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+//            if(mSubtitleVisible) {
+//                getActivity().getActionBar().setSubtitle(R.string.subtitle);
+//            }
 //        }
-
-    }
-}
+//        return v;
+//    }
+//
+//    @TargetApi(11)
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.menu_item_new_recipe:
+//                Recipe recipe = new Recipe();
+//                RecipeLab.get(getActivity()).addRecipe(recipe);
+//                Intent i = new Intent(getActivity(), RecipePagerActivity.class);
+//                i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, recipe.getId());
+//                startActivityForResult(i, 0);
+//                return true;
+////            case R.id.menu_item_show_subtitle:
+////                if (getActivity().getActionBar().getSubtitle() == null) {
+////                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
+////                    mSubtitleVisible = true;
+////                    item.setTitle(R.string.hide_subtitle);
+////                } else {
+////                    getActivity().getActionBar().setSubtitle(null);
+////                    mSubtitleVisible = false;
+////                    item.setTitle(R.string.show_subtitle);
+////                }
+////                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+//
+//    @Override
+//    public void onListItemClick(ListView l, View v, int position, long id) {
+//        Recipe r = ((RecipeAdapter)getListAdapter()).getItem(position);
+//
+//        //start up the pager
+//        Intent i = new Intent(getActivity(), RecipePagerActivity.class);
+//        i.putExtra(RecipeFragment.EXTRA_RECIPE_ID, r.getId());
+//        startActivity(i);
+//    }
+//
+//    private class RecipeAdapter extends ArrayAdapter<Recipe>{
+//
+//        public RecipeAdapter(ArrayList<Recipe> recipes){
+//
+//            super(getActivity(), 0 , recipes);
+//        }
+//
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            if(convertView == null){
+//                convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_recipe, null);
+//            }
+//            Recipe r = getItem(position);
+//
+//            TextView titleTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_titleTextView);
+//            titleTextView.setText(r.getTitle());
+//            TextView dateTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_dateTextView);
+//            dateTextView.setText(r.getDate().toString());
+//            CheckBox solvedCheckBox = (CheckBox) convertView.findViewById(R.id.recipe_list_item_solvedCheckBox);
+//            solvedCheckBox.setChecked(r.isSolved());
+//
+//            return convertView;
+//        }
+//    }
+//
+//    @Override
+//    public void onResume(){
+//        super.onResume();
+//        ((RecipeAdapter)getListAdapter()).notifyDataSetChanged();
+//    }
+//
+//    @Override
+//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater){
+//        super.onCreateOptionsMenu(menu, inflater);
+////        menu.clear();
+//        inflater.inflate(R.menu.fragment_recipe_list, menu);
+//
+//        //taking out this dumb subtitle too
+////        MenuItem showSubtitle = menu.findItem(R.id.menu_item_show_subtitle);
+////        if(mSubtitleVisible && showSubtitle != null) {
+////            showSubtitle.setTitle(R.string.hide_subtitle);
+////        }
+//
+//    }
+//}

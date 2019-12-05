@@ -14,10 +14,11 @@ import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.UUID;
+import java.util.List;
 
 public class RecipePagerActivity extends FragmentActivity {
     private ViewPager mViewPager;
-    private ArrayList<Recipe> mRecipes;
+    private List<Recipe> mRecipes;
 
     @Override
     public void onCreate(Bundle savedInstanceState){
