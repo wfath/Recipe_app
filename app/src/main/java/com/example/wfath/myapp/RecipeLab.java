@@ -46,6 +46,10 @@ public class RecipeLab {
         mRecipes.add(r);
     }
 
+    public void deleteRecipe(Recipe r){
+        mRecipes.remove(r);
+    }
+
     public boolean saveRecipes(){
         try{
             mSerializer.saveRecipes(mRecipes);
