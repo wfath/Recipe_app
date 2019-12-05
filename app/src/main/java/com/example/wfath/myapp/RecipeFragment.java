@@ -103,10 +103,6 @@ public class RecipeFragment extends Fragment {
 //        }
 
         mRecipeInfo = (EditText)v.findViewById(R.id.recipe_information);
-        //TODO::NEED to go throuhg and implemnt all of the stuff for the recipe info
-        //TODO::save the information to the JSON, add all of the getters and setters
-        //TODO:: go through and do everything like that, might be a bit confusing but we will get this
-        //TODO:: young money fresh money lets get it!!
         mRecipeInfo.setText(mRecipe.getInfo());
         System.out.println("this is the current info: " + mRecipeInfo.getText());
 
@@ -215,7 +211,7 @@ public class RecipeFragment extends Fragment {
     @Override
     public void onPause(){
         super.onPause();
-        RecipeLab.get(getActivity()).saveRecipes();
+        RecipeLab.get(getActivity()).updateRecipe(mRecipe);
     }
 
     //plz stop breaking my program

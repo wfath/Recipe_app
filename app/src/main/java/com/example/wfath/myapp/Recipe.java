@@ -21,8 +21,12 @@ public class Recipe extends Object {
     private boolean mSolved;
 
     public Recipe(){
-
-        mId = UUID.randomUUID();
+        this(UUID.randomUUID());
+//        mId = UUID.randomUUID();
+//        mDate = new Date();
+    }
+    public Recipe(UUID id){
+        mId = id;
         mDate = new Date();
     }
 

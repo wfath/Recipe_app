@@ -27,7 +27,7 @@ public class RecipePagerActivity extends FragmentActivity {
         mViewPager.setId(R.id.viewpager);
         setContentView(mViewPager);
 
-        mRecipes = RecipeLab.get(this).getRecipes();
+        mRecipes.addAll(RecipeLab.get(this).getRecipes());
 
         FragmentManager fm = getSupportFragmentManager();
         mViewPager.setAdapter(new FragmentStatePagerAdapter(fm, FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {

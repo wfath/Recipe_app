@@ -14,6 +14,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.view.View;
+import java.util.List;
 import android.app.Application;
 import android.content.ContextWrapper;
 
@@ -36,7 +37,7 @@ import android.content.Intent;
 
 public class RecipeListFragment extends ListFragment {
     private static final String TAG = "RecipeListFragment";
-    private ArrayList<Recipe> mRecipes;
+    private List<Recipe> mRecipes;
     private ListView mlistView;
     private boolean mSubtitleVisible;
     private EditText mRecipeInfo;
@@ -130,7 +131,7 @@ public class RecipeListFragment extends ListFragment {
 
     private class RecipeAdapter extends ArrayAdapter<Recipe>{
 
-        public RecipeAdapter(ArrayList<Recipe> recipes){
+        public RecipeAdapter(List<Recipe> recipes){
 
             super(getActivity(), 0 , recipes);
         }
@@ -171,5 +172,9 @@ public class RecipeListFragment extends ListFragment {
 //            showSubtitle.setTitle(R.string.hide_subtitle);
 //        }
 
+    }
+
+    public void setRecipes(List<Recipe> recipes){
+        mRecipes = recipes;
     }
 }
