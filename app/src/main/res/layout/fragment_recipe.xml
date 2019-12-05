@@ -20,23 +20,6 @@
         android:hint="@string/recipe_title_hint"
         android:gravity="center"/>
 
-    <!--Recipe details Label-->
-    <TextView
-        style="?android:listSeparatorTextViewStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/recipe_details_label" />
-
-
-    <EditText
-        android:id="@+id/recipe_information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/recipe_title_hint"
-        android:gravity="center" />
-    <!--Recipe date, shows up as abutton-->
-
-
     <!--    horizontal linear layout-->
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,6 +41,58 @@
             android:layout_height="wrap_content"
             android:text="@string/recipe_favorited_label" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
+
+    <!--Recipe details Label-->
+    <TextView
+        style="?android:listSeparatorTextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/recipe_details_label" />
+
+
+    <EditText
+        android:id="@+id/recipe_information"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/recipe_title_hint"
+        android:gravity="center" />
+    <!--Recipe date, shows up as abutton-->
+
+
+<!--    &lt;!&ndash;    horizontal linear layout&ndash;&gt;-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        &lt;!&ndash;Recipe date, shows up as abutton&ndash;&gt;-->
+<!--        <Button-->
+<!--            android:id="@+id/recipe_date"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content" />-->
+
+<!--        &lt;!&ndash;    crime solved label&ndash;&gt;-->
+<!--        <CheckBox-->
+<!--            android:id="@+id/recipe_solved"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/recipe_favorited_label" />-->
+
+<!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent">-->
+
+<!--        </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--    </LinearLayout>-->
 
 </LinearLayout>

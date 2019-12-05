@@ -173,13 +173,14 @@ public class RecipeFragment extends Fragment {
 //        This is where the data gets written on the button
         mDateButton = (Button)v.findViewById(R.id.recipe_date);
         mDateButton.setText(mRecipe.getDate().toString());
-        mDateButton.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                FragmentManager fm = getActivity().getSupportFragmentManager();
-                DatePickerFragment dialog = new DatePickerFragment();
-                dialog.show(fm, DIALOG_DATE);
-            }
-        });
+        mDateButton.setFocusable(false);
+//        mDateButton.setOnClickListener(new View.OnClickListener(){
+//            public void onClick(View v){
+//                FragmentManager fm = getActivity().getSupportFragmentManager();
+//                DatePickerFragment dialog = new DatePickerFragment();
+//                dialog.show(fm, DIALOG_DATE);
+//            }
+//        });
 
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.recipe_solved);
         mSolvedCheckBox.setChecked(mRecipe.isSolved());
