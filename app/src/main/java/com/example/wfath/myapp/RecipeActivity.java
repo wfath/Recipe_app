@@ -15,7 +15,7 @@ public class RecipeActivity extends SingleFragmentActivity {
     @Override
     protected  Fragment createFragment(){
 
-        UUID recipeId = (UUID)getIntent().getSerializableExtra(RecipeFragment.EXTRA_RECIPE_ID);
-        return RecipeFragment.newInstance(recipeId);
+//        UUID recipeId = (UUID)getIntent().getSerializableExtra(RecipeFragment.EXTRA_RECIPE_ID);
+        return new RecipeFragment();
     }
 }

@@ -1,10 +1,11 @@
 package com.example.wfath.myapp;
 import android.content.Context;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class RecipeLab {
-    private ArrayList<Recipe> mRecipes;
+    private List<Recipe> mRecipes;
 
     private static RecipeLab sRecipeLab;
     private Context mAppContext;
@@ -33,7 +34,7 @@ public class RecipeLab {
         mRecipes.add(r);
     }
 
-    public ArrayList<Recipe> getRecipes() {
+    public List<Recipe> getRecipes() {
 
 
         return mRecipes;
