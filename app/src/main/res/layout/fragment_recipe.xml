@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/fragment_linear_layout">
 
 
     <!--    //title label-->
@@ -10,7 +11,8 @@
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_title_label" />
+        android:text="@string/recipe_title_label"
+        android:fontFamily="sans-serif-thin"/>
 
     <!--    title hint-->
     <EditText
@@ -18,7 +20,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/recipe_title_hint"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed"/>
 
     <!--    horizontal linear layout-->
     <LinearLayout
@@ -32,14 +35,17 @@
         <Button
             android:id="@+id/recipe_date"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"/>
+
 
         <!--    crime solved label-->
         <CheckBox
             android:id="@+id/recipe_solved"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recipe_favorited_label" />
+            android:text="@string/recipe_favorited_label"
+            android:fontFamily="sans-serif-condensed"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -48,13 +54,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
+<!--    <CheckBox-->
+<!--    android:id="@+id/modify_check_box"-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_gravity="center"-->
+<!--        android:text="@string/modify"/>-->
 
     <!--Recipe details Label-->
     <TextView
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/recipe_details_label" />
+        android:text="@string/recipe_details_label"
+        android:fontFamily="sans-serif-thin"/>
 
 
     <EditText
@@ -62,7 +75,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/recipe_title_hint"
-        android:gravity="center" />
+        android:gravity="center"
+        android:fontFamily="sans-serif-condensed"/>
+
+
     <!--Recipe date, shows up as abutton-->
 
 

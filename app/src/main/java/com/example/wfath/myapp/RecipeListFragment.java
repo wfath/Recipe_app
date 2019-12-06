@@ -2,6 +2,8 @@ package com.example.wfath.myapp;
 import androidx.fragment.app.ListFragment;
 
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.ActionMode;
@@ -13,11 +15,14 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.view.View;
+import com.example.wfath.myapp.Recipe;
 import android.app.Application;
 import android.content.ContextWrapper;
 
@@ -28,6 +33,7 @@ import android.annotation.TargetApi;
 import android.app.ActionBar;
 
 import android.util.Log;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ListView;
 
@@ -45,7 +51,17 @@ public class RecipeListFragment extends ListFragment {
     private boolean mSubtitleVisible;
     private EditText mRecipeInfo;
     private EditText mTitlefield;
+    private int mTextSize= 0;
+//    private FrameLayout layout;
 
+
+    public void setmTextSize(int t){
+        mTextSize = t;
+    }
+
+    public int getmTextSize(){
+        return mTextSize;
+    }
     @Override
     public void onCreate(Bundle savedInstancesState) {
         super.onCreate(savedInstancesState);
@@ -83,6 +99,10 @@ public class RecipeListFragment extends ListFragment {
             }
         }
 
+//        ActionBar bar = getActivity().getActionBar();
+//        bar.setBackgroundDrawable(new ColorDrawable(Color.RED));
+//        layout = (FrameLayout) v.findViewById(R.id.fragmentContainer);
+//        layout.setBackgroundColor(Color.rgb(238,220,152));
 
         ListView listView = (ListView)v.findViewById(android.R.id.list);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB) {
@@ -144,6 +164,8 @@ public class RecipeListFragment extends ListFragment {
     @TargetApi(11)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        RecipeAdapter adapter = new RecipeAdapter(mRecipes);
+
         switch (item.getItemId()) {
             case R.id.menu_item_new_recipe:
                 Recipe recipe = new Recipe();
@@ -155,6 +177,30 @@ public class RecipeListFragment extends ListFragment {
 //                RecipeFragment.newInstance(recipe.getId()).setTitleAndInfoFocusable();
 
                 return true;
+            case R.id.increase_text_size:
+                setmTextSize(30);
+                getActivity().recreate();
+                return true;
+            case R.id.decrease_text_size:
+                setmTextSize(15);
+                getActivity().recreate();
+                return true;
+//                Intent intent = getActivity().getIntent();
+//                getActivity().finish();
+//                startActivity(intent);
+
+//                Intent j = new Intent(getActivity(), RecipeListActivity.class);
+//                startActivityForResult(j, 0);
+//                System.out.println("test test test");
+//                for(Recipe r : mRecipes){
+//
+//                    RecipeLab.get(getActivity()).deleteRecipe(r);
+//                }
+//                adapter.notifyDataSetChanged();
+//                Intent j = new Intent(getActivity(), RecipePagerActivity.class);
+//                startActivityForResult(j, 0);
+//
+//                return true;
 //            case R.id.menu_item_show_subtitle:
 //                if (getActivity().getActionBar().getSubtitle() == null) {
 //                    getActivity().getActionBar().setSubtitle(R.string.subtitle);
@@ -166,6 +212,8 @@ public class RecipeListFragment extends ListFragment {
 //                    item.setTitle(R.string.show_subtitle);
 //                }
 //                return true;
+//            case R.id.menu_item_settings:
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -188,6 +236,15 @@ public class RecipeListFragment extends ListFragment {
                 RecipeLab.get(getActivity()).deleteRecipe(recipe);
                 adapter.notifyDataSetChanged();
                 return true;
+//            case R.id.reset_database:
+//                System.out.println("reset database");
+//                return true;
+//            case R.id.change_color_red:
+//                System.out.println("change red");
+//                return true;
+//            case R.id.change_color_black:
+//                System.out.println("change black");
+//                return true;
         }
         return super.onContextItemSelected(item);
     }
@@ -222,11 +279,15 @@ public class RecipeListFragment extends ListFragment {
                 convertView = getActivity().getLayoutInflater().inflate(R.layout.list_item_recipe, null);
             }
             Recipe r = getItem(position);
-
+            if(getmTextSize() == 0){
+                setmTextSize(15);
+            }
             TextView titleTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_titleTextView);
             titleTextView.setText(r.getTitle());
+            titleTextView.setTextSize(mTextSize);
             TextView dateTextView = (TextView)convertView.findViewById(R.id.recipe_list_item_dateTextView);
             dateTextView.setText(r.getDate().toString());
+            dateTextView.setTextSize(mTextSize);
             CheckBox solvedCheckBox = (CheckBox) convertView.findViewById(R.id.recipe_list_item_solvedCheckBox);
             solvedCheckBox.setChecked(r.isSolved());
 

@@ -19,11 +19,15 @@ public class Recipe extends Object {
     private String mInformation;
     private Date mDate;
     private boolean mSolved;
+    private boolean mCanMod;
+    private int mTextSize;
+
 
     public Recipe(){
 
         mId = UUID.randomUUID();
         mDate = new Date();
+        mCanMod = false;
     }
 
     //implement info in here
@@ -35,6 +39,15 @@ public class Recipe extends Object {
         mInformation = json.getString(JSON_INFO);
         mSolved = json.getBoolean(JSON_FAVORITE);
         mDate = new Date(json.getLong(JSON_DATE));
+        mCanMod = false;
+    }
+
+    public int getTextSize(){
+        return mTextSize;
+    }
+
+    public void setTextSize(int i ){
+        mTextSize = i;
     }
 
     public JSONObject toJSON() throws JSONException{
@@ -87,8 +100,16 @@ public class Recipe extends Object {
         return mSolved;
     }
 
+    public boolean isCanMod(){
+        return mCanMod;
+    }
+
     public void setSolved(boolean solved){
         mSolved = solved;
+    }
+
+    public void setCanMod(boolean canmod){
+        mCanMod = canmod;
     }
 }
 

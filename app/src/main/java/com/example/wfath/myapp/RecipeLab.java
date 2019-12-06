@@ -50,6 +50,13 @@ public class RecipeLab {
         mRecipes.remove(r);
     }
 
+    public void deleteAllRecipes(){
+        for(Recipe r : mRecipes){
+            deleteRecipe(r);
+        }
+//        mRecipes = new ArrayList<>();
+    }
+
     public boolean saveRecipes(){
         try{
             mSerializer.saveRecipes(mRecipes);

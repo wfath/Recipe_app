@@ -13,4 +13,10 @@
     <string name="subtitle">We Love FOOD</string>
     <string name="delete_recipe">Delete</string>
     <string name="recipe_information">Recipe Info</string>
+    <string name="modify">Modify?</string>
+    <string name="change_actionbar_red">Change Actionbar Red</string>
+    <string name="change_actionbar_black">Change Actionbar Black</string>
+    <string name="delete_all_records">Delete Everything</string>
+    <string name="increase_text_size">Increase Text Size</string>
+    <string name="decrease_text_size">Decrease Text Size</string>
 </resources>

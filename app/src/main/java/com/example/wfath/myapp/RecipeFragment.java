@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager;
 
 
 import android.annotation.TargetApi;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -29,6 +30,7 @@ import android.text.Editable;
 import android.view.MenuItem;
 import android.view.LayoutInflater;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import java.util.UUID;
 
@@ -42,11 +44,13 @@ public class RecipeFragment extends Fragment {
     private boolean titleHasBeenSet;
     private boolean infoHasBeenSet;
 
+    private CheckBox mModifyCheckBox;
     private Recipe mRecipe;
     private EditText mRecipeInfo;
     private EditText mTitlefield;
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
+    private LinearLayout layout;
 
 //    Fragment.onCreate
 
@@ -102,6 +106,9 @@ public class RecipeFragment extends Fragment {
 //            }
 //        }
 
+        layout = (LinearLayout)v.findViewById(R.id.fragment_linear_layout);
+        layout.setBackgroundColor(Color.rgb(255,249,219));
+
         mRecipeInfo = (EditText)v.findViewById(R.id.recipe_information);
         //TODO::NEED to go throuhg and implemnt all of the stuff for the recipe info
         //TODO::save the information to the JSON, add all of the getters and setters
@@ -112,9 +119,12 @@ public class RecipeFragment extends Fragment {
 
         //I did it this is how you make sure it's non editable after your first instance
         if(mRecipe.getInfo() != null){
-            mRecipeInfo.setFocusable(false);
-        }
+            mRecipeInfo.setFocusable(false);}
+//        } else if(mRecipe.isCanMod()){
+//            mRecipeInfo.setFocusable(true);
+//        }
 
+        System.out.println(mRecipe.getTitle() + "is can mod?" + mRecipe.isCanMod());
         mRecipeInfo.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(
                     CharSequence c, int start, int before, int count) {
@@ -136,6 +146,7 @@ public class RecipeFragment extends Fragment {
                 //this one too
 //                mRecipeInfo.setFocusable(false);
 //                infoHasBeenSet = true;
+//                mRecipeInfo.setFocusable(false);
             }
         });
 
@@ -183,6 +194,16 @@ public class RecipeFragment extends Fragment {
 //            }
 //        });
 
+//        mModifyCheckBox = (CheckBox)v.findViewById(R.id.modify_check_box);
+//        mModifyCheckBox.setChecked(mRecipe.isCanMod());
+//        mModifyCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+//                mRecipe.setCanMod(isChecked);
+//                System.out.println(isChecked);
+//            }
+//        });
+
         mSolvedCheckBox = (CheckBox)v.findViewById(R.id.recipe_solved);
         mSolvedCheckBox.setChecked(mRecipe.isSolved());
         mSolvedCheckBox.setOnCheckedChangeListener(new OnCheckedChangeListener(){
@@ -218,6 +239,7 @@ public class RecipeFragment extends Fragment {
         super.onPause();
         RecipeLab.get(getActivity()).saveRecipes();
     }
+
 
     //plz stop breaking my program
 //    @Override

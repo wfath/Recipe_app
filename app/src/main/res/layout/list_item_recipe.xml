@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_activated">
+    android:background="@drawable/background_activated"
+    android:id="@+id/recipe_list_view">
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
         android:textStyle="bold"
         android:paddingLeft="4dp"
         android:paddingRight="4dp"
-        android:text="Recipe title"/>
+        android:text="Recipe title"
+        android:fontFamily="sans-serif-thin"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +33,7 @@
         android:paddingRight="4dp"
         android:paddingLeft="4dp"
         android:paddingTop="4dp"
-        android:text="Recipe date"/>
+        android:text="Recipe date"
+        android:fontFamily="sans-serif-condensed-medium"/>
 
 </RelativeLayout>
