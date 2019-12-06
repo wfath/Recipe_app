@@ -174,6 +174,7 @@ public class RecipeFragment extends Fragment {
         mDateButton = (Button)v.findViewById(R.id.recipe_date);
         mDateButton.setText(mRecipe.getDate().toString());
         mDateButton.setFocusable(false);
+        mDateButton.setClickable(false);
 //        mDateButton.setOnClickListener(new View.OnClickListener(){
 //            public void onClick(View v){
 //                FragmentManager fm = getActivity().getSupportFragmentManager();
