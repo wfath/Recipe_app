@@ -6,6 +6,15 @@
         android:icon="@drawable/ic_add_recipe"
         android:title="@string/new_recipe"
         app:showAsAction="ifRoom|withText"/>
+   <item android:id="@+id/increase_text_size"
+       android:icon="@drawable/ic_up_arrow"
+       android:title="@string/increase_text_size"
+       app:showAsAction="ifRoom|withText" />
+    <item android:id="@+id/decrease_text_size"
+    android:icon="@drawable/ic_down_arrow"
+    android:title="@string/decrease_text_size"
+    app:showAsAction="ifRoom|withText"/>
+
 <!--    <item android:id="@+id/menu_item_show_subtitle"-->
 <!--        android:title="@string/show_subtitle"-->
 <!--        app:showAsAction="ifRoom"/>-->
